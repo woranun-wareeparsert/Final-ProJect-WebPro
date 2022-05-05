@@ -52,11 +52,11 @@
               <strong>Add Show</strong>
             </button>
             </router-link>
-            <span v-if="editShow == false">
+            <span v-if="editShow == false && isAdmin()" >
             <button class="button is-danger ml-5" @click="checkEditShow()"><strong>Edit Show</strong></button>
             </span>
-            <span v-else>
-            <button class="button is-danger ml-5" @click="CancelEditShow()"><strong>Cancel</strong></button>
+            <span v-else-if="editShow == true && isAdmin()">
+            <button class="button is-info ml-5" @click="CancelEditShow()"><strong>Cancel</strong></button>
             </span>
           </div>
         </div>
@@ -78,12 +78,12 @@
             <td>
             <div v-if="editShow == false">
               <router-link :to="`/show/${show.show_id}`"
-                ><button class="button is-danger">
+                ><button class="button is-success">
                   <span>Click</span>
                 </button></router-link>
               </div>
               <span v-else>
-                <router-link :to="`/edit/show/${show.show_id}`">
+                <router-link :to="`/edit/show/${show.show_id}`" >
                   <button class="button is-warning ml-2" @click="EditShow(show.show_id)"><span>Edit</span></button>
                 </router-link>
                 <button class="button is-danger ml-2" @click="DeleteShow(show.show_id)"><span>Delete</span></button>
@@ -161,7 +161,7 @@ export default {
       const result = confirm('Are you sure you want to delete this show ?');
       if (result){
         axios
-        .delete(`http://localhost:3000/movies/delete/${id}`)
+        .delete(`http://localhost:3000/show/delete/${id}`)
         .then((response) => {
           this.getMovieDetail(this.$route.params.id);
           this.editShow = false

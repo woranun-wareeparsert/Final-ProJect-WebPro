@@ -87,7 +87,10 @@
               </tr>
             </tbody>
           </table>
-          <div class="columns is-centered is-multiline ">
+                    <div class="columns is-centered has-background-danger-dark p-2 mt-5">
+            <p class="is-size-3 has-text-white">SCREEN</p>
+          </div>
+          <div class="columns is-centered is-multiline mt-5">
             <div class='column is-1 has-text-white is-size-7'>
               <img style="width: 80%;height: 60%" src="https://media.discordapp.net/attachments/953696113448337498/969283005338251274/seat.png"/>
             <br>200 ฿
@@ -110,8 +113,6 @@
             <br>Selecting
             </div>
 
-
-            
           </div>
         </div>
         <div v-if="isCusto()" class="column is-4">

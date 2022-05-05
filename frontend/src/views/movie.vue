@@ -44,11 +44,11 @@
         <div class="columns is-multiline">
           <!-- loop -->
           <div class="listmovie column is-3 mt-5" v-for="(movie) in moviedetail" :key="movie.m_id">
-            <div class="card has-background-info-light">
+            <div class="card" style=" background-image: linear-gradient(rgb(116, 203, 255), white);">
               <div class="card-image pt-5">
                 <figure>
                   <!-- ไว้ใส่รูป -->
-                  <img style=" width: 180px; height: 284px;"
+                  <img style=" width: 180px; height: 284px; box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;"
                     :src="image(movie.img_movie)"
                     alt="Placeholder image"
                   />

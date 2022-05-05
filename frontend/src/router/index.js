@@ -80,6 +80,12 @@ const routes = [
     name: 'Edit Show',
     meta: {login: true},
     component: () => import('../views/UpdateShow.vue')
+  },
+  {
+    path: '/customer',
+    name: 'All Customer',
+    meta: {login: true},
+    component: () => import('../views/AllCustomer.vue')
   }
 ]
 

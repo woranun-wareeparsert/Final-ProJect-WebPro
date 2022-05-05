@@ -15,7 +15,7 @@
             ไม่มีรายการคำสั่งซื้อ
           </p>
           <div class="column is-3 mt-5" v-for="wait in wait" :key="wait">
-            <div class="card has-background-danger-light">
+            <div class="card" style=" background-image: linear-gradient(rgb(253, 86, 92), white);">
               <div class="card-image pt-5">
                 <figure>
                   <!-- ไว้ใส่รูป -->
@@ -62,7 +62,7 @@
           <!-- loop -->
 
           <div class="column is-3 mt-5" v-for="paid in paid" :key="paid.order_id">
-            <div class="card has-background-primary-light">
+            <div class="card" style=" background-image: linear-gradient(rgb(116, 203, 255), white);">
               <div class="card-image pt-5">
                 <figure>
                   <!-- ไว้ใส่รูป -->

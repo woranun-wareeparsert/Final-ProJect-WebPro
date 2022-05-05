@@ -62,24 +62,25 @@
           >
             ไม่ค้นพบรายการที่ต้องการ
           </p>
-          <div class="listmovie column is-3 mt-5" v-for="(movie) in movie" :key="movie.id">
+          <div class="listmovie column is-3 mt-5" v-for="(movie) in movie" :key="movie.id" >
             <div class="level-left has-text-white">{{ movie.tname }}</div>
             <div class="level-left has-text-white">{{ movie.show_date }}</div>
             <div class="level-left mb-3 has-text-white">
               {{ movie.st_time }}
             </div>
-            <div class="card has-background-warning-light">
+            <div class="card " style=" background-color: #a40606; background-color: #99201c;
+background-image: linear-gradient(#FF7D7D, #ffffff);">
               <div class="card-image pt-5">
                 <figure>
                   <!-- ไว้ใส่รูป -->
-                  <img style=" width: 180px; height: 284px;"
+                  <img style=" width: 180px; height: 284px; box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;"
                     :src="image(movie.img_movie)"
                     alt="Placeholder image"
                   />
                 </figure>
               </div>
               <div class="card-content">
-                <div class="content" style="height: 40px">
+                <div class="content has-text-black" style="height: 40px">
                   {{ movie.m_name }}
                 </div>
               </div>
