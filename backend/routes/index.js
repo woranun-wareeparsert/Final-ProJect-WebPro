@@ -240,5 +240,46 @@ router.get("/movies/detail/:id", async function (req, res, next) {
       }
 })
 
+router.get("/customer", async function (req, res, next) {
+    const conn = await pool.getConnection();
+    const search = req.query.search || ''
+    await conn.beginTransaction();
+    try{
+        sql = 'SELECT *, COUNT(CUSTOMER_cid) as `order` FROM customer  left outer join project_database.order on (CUSTOMER_cid = cid) GROUP by cid order by cid'
+        cond = []
+        if (search.length > 0){
+            sql = 'SELECT *, COUNT(CUSTOMER_cid) as `order` FROM customer  left outer join project_database.order on (CUSTOMER_cid = cid) where c_name like ? or email_id like ? GROUP by cid order by cid'
+            cond = [`%${search}%`, `%${search}%`]
+        }
+        const [customer, fields1] = await pool.query(sql, cond)
+        await conn.commit();
+        res.json({customer: customer})
+    } catch (err) {
+        await conn.rollback();
+        return res.status(500).json(err);
+    } finally {
+        console.log("finally");
+        conn.release();
+      }
+})
+router.get("/customer/detail/:id", async function (req, res, next) {
+    const conn = await pool.getConnection();
+    await conn.beginTransaction();
+    try{
+        const [order, fields1] = await pool.query('SELECT * FROM project_database.order join tickets on (order_id = ORDER_ITEM_ORDER_order_id) \
+         join project_database.show on (SHOW_show_id = show_id) join movies on (m_id = THEATRE_MOVIE_MOVIES_m_id) join theatre on (THEATRE_MOVIE_THEATRE_tid = tid) where CUSTOMER_cid = ? GROUP BY order_id order by order_id', [req.params.id])
+         const [customer, fields2] = await pool.query('SELECT * FROM customer where cid = ?', [req.params.id])
+         await conn.commit();
+        console.log(order)
+        res.json({order: order, customer: customer})
+    } catch (err) {
+        await conn.rollback();
+        return res.status(500).json(err);
+    } finally {
+        console.log("finally");
+        conn.release();
+      }
+})
+
 
 exports.router = router;

@@ -30,7 +30,6 @@ const upload = multer({ storage: storage })
 
 router.post("/movies/add/",isLoggedIn,isAdmin, upload.single('myImage'), async function (req, res, next) {
     const file = req.file;
-    console.log(!file)
     if (!file) {
         const error = new Error("Please upload a file");
         error.httpStatusCode = 400;
@@ -85,7 +84,7 @@ router.post("/movies/edit/:id", upload.single('myImage'), async function (req, r
       }
 })
 
-router.delete("/movies/delete/:id",isLoggedIn, isAdmin, async function (req, res, next) {
+router.delete("/show/delete/:id",isLoggedIn, isAdmin, async function (req, res, next) {
     const conn = await pool.getConnection();
     await conn.beginTransaction();
     try{

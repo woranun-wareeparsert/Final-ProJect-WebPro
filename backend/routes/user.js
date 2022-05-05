@@ -31,8 +31,6 @@ const signupSchema = Joi.object({
     c_name: Joi.string().required().max(150),
     password: Joi.string().required().custom(passwordValidator),
     confirm_password: Joi.string().required().valid(Joi.ref('password')),
-    newpassword: Joi.string().required().custom(passwordValidator),
-    confirm_newpassword: Joi.string().required().valid(Joi.ref('newpassword')),
 })
 
 router.post('/user/signup', async (req, res, next) => {
